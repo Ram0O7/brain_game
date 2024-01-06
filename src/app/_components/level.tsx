@@ -5,12 +5,14 @@ interface lvl {
   setLevel: React.Dispatch<React.SetStateAction<number>>;
   timer: number;
   setst: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
 }
 export const levelcontext = createContext<lvl>({
   level: 1,
   setLevel: () => {},
   timer: 0,
   setst: () => {},
+  setCurrentTime: () => {},
 });
 
 export const Level = ({ children }: { children: React.ReactNode }) => {
@@ -29,7 +31,9 @@ export const Level = ({ children }: { children: React.ReactNode }) => {
   }, [st]);
 
   return (
-    <levelcontext.Provider value={{ level, setLevel, timer, setst }}>
+    <levelcontext.Provider
+      value={{ level, setLevel, timer, setst, setCurrentTime }}
+    >
       {children}
     </levelcontext.Provider>
   );

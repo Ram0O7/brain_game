@@ -14,9 +14,9 @@ export const formatTime = (timeInSeconds: number) => {
 const Clock = () => {
   const { timer } = useContext(levelcontext);
   return (
-    <div>
-      <div>Current Time:</div>
-      <div>{formatTime(timer)}</div>
+    <div className="bg-gray-100 p-4 rounded-md shadow-md text-center w-screen">
+      <div className="text-sm text-gray-500 mb-2">Current Time:</div>
+      <div className="text-lg font-bold">{formatTime(timer)}</div>
     </div>
   );
 };

@@ -5,16 +5,13 @@ import Link from "next/link";
 
 const LevelSlidingBar = () => {
   const { level, setLevel } = useContext(levelcontext);
-  // console.log(`level value ${level} from main page.tsx`);
-  // console.log(typeof level);
 
   const handleLevelChange = (e: any) => {
     setLevel(parseInt(e.target.value, 10));
-    // console.log(`level value ${level} from main page.tsx after change`);
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen flex-col gap-3">
       <div className="w-96 p-4 bg-white shadow-md rounded-md">
         <label
           htmlFor="levelSlider"
@@ -30,10 +27,10 @@ const LevelSlidingBar = () => {
           max="3"
           value={level}
           onChange={handleLevelChange}
-          className="mt-1"
+          className="mt-1 cursor-pointer"
         />
       </div>
-      <Link href="/try" className=" bg-blue-600 p-1 rounded-lg">
+      <Link href="/try" className=" bg-blue-600 px-5 py-2 rounded-lg">
         next
       </Link>
     </div>

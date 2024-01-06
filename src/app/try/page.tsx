@@ -8,7 +8,7 @@ const MemoryGame = () => {
   const [flippedCount, setFlippedCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState<Cardtype[]>([]);
   const [show, setshow] = useState(false);
-  const { level, setst, timer } = useContext(levelcontext);
+  const { level, setst, timer, setCurrentTime } = useContext(levelcontext);
 
   // console.log(`rerendering`);
   const emojis = ["✨", "🔥", "🦊", "🤟", "🫶", "🐍"];
@@ -38,6 +38,8 @@ const MemoryGame = () => {
   const [cards, setCards] = useState<Cardtype[]>([]);
   useEffect(() => {
     setCards(generateCards());
+    setst(false);
+    setCurrentTime(0);
   }, [level]);
   useEffect(() => {
     if (flippedCount == level + 1) {
@@ -48,11 +50,8 @@ const MemoryGame = () => {
       }, 500);
       return () => clearTimeout(delay);
     }
-    // console.log(cards);
 
     if (cards.length > 0 && cards.every((card) => card.isMatched == true)) {
-      console.log("exe");
-
       setshow(true);
       setst(false);
     }
@@ -100,7 +99,7 @@ const MemoryGame = () => {
         <Clock />
       </div>
 
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-screen flex-col gap-5">
         <div className=" w-auto p-4 bg-white shadow-md rounded-md">
           <div className="grid grid-cols-4 gap-4">
             {cards.map((card) => (
@@ -116,15 +115,17 @@ const MemoryGame = () => {
             ))}
           </div>
         </div>
-      </div>
-      <div>
-        {show && (
-          <>
-            <h1 className=" text-white">game is over</h1>
-            <h1 className=" text-white">time taken</h1>
-            <h1 className=" text-white">{formatTime(timer)}</h1>
-          </>
-        )}
+        <div>
+          {show && (
+            <div className="bg-blue-500 p-8 rounded-lg text-center text-white">
+              <h1 className="text-3xl font-bold mb-4">Game Over</h1>
+              <div className="flex flex-col items-center">
+                <h2 className="text-lg mb-2">Time Taken</h2>
+                <h1 className="text-4xl font-bold">{formatTime(timer)}</h1>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
