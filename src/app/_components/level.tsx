@@ -28,7 +28,7 @@ export const Level = ({ children }: { children: React.ReactNode }) => {
     // console.log(st);
     const clockInterval = setInterval(updateCurrentTime, 1000);
     return () => clearInterval(clockInterval);
-  }, [st]);
+  }, []);
 
   return (
     <levelcontext.Provider
